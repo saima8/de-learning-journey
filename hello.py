@@ -3,3 +3,4 @@
 
 print("Hello, Data Engineering!")
 print("I am learning Git this week.")
+print("Today I learned: git add, commit, push")
