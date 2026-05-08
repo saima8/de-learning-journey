@@ -4,3 +4,4 @@
 print("Hello, Data Engineering!")
 print("I am learning Git this week.")
 print("Today I learned: git add, commit, push")
+print("Git tracks every change I make to my code")
