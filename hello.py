@@ -7,3 +7,8 @@ print("Today I learned: git add, commit, push")
 print("Git tracks every change I make to my code")
 print("My GitHub username is saima8")
 print("Week 1 complete - first repo pushed!")
+
+
+print("---")
+print("This change was made on a feature branch!")
+print("Branches keep experimental work separate from main")
