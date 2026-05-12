@@ -1,7 +1,7 @@
 # My data engineering learning journey
 # Week 1 - Getting started with Git and GitHub
 
-print("Hello from the conflict-test branch!")
+print("Hello from the main branch!")
 
 print("Hello, Data Engineering!")
 print("I am learning Git this week.")
