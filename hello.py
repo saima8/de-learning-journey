@@ -1,7 +1,7 @@
 # My data engineering learning journey
 # Week 1 - Getting started with Git and GitHub
 
-print("Hello, Data Engineering!")
+print("Hello from the main branch!!")
 print("I am learning Git this week.")
 print("Today I learned: git add, commit, push")
 print("Git tracks every change I make to my code")
