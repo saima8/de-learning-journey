@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.Python
+env/
+venv/
+.env
+
+# dbt
+target/
+dbt_packages/
+logs/
+*.log
+
+# Data files - never commit raw data
+*.csv
+*.parquet
+*.xlsx
+*.json
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE/Editor
+.vscode/
+.idea/
+
+# AWS credentials - never commit these
+.aws/
+credentials
