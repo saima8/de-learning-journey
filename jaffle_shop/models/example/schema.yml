@@ -1,21 +1,26 @@
-
 version: 2
 
 models:
   - name: my_first_dbt_model
-    description: "A starter dbt model"
+    description: "A starter dbt model that generates a simple id column. Used as an upstream dependency for my_second_dbt_model."
     columns:
       - name: id
-        description: "The primary key for this table"
+        description: "The primary key for this table. Must be unique and non-null."
         data_tests:
           - unique
           - not_null
+          - accepted_values:
+              arguments:
+                values: [1, 2, 3, 4, 5]
 
   - name: my_second_dbt_model
-    description: "A starter dbt model"
+    description: "A starter dbt model that references my_first_dbt_model using the ref() function."
     columns:
       - name: id
-        description: "The primary key for this table"
+        description: "Foreign key to my_first_dbt_model."
         data_tests:
           - unique
           - not_null
+          - relationships:
+              to: ref('my_first_dbt_model')
+              field: id
