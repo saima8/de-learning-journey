@@ -1,0 +1,34 @@
+version: 2
+
+sources:
+  - name: main
+    tables:
+      - name: taxi_zone_lookup
+        description: "Raw taxi zone lookup table loaded via dbt seed"
+
+models:
+  - name: stg_trips
+    description: "Staged NYC Yellow Taxi trips for January 2025. Filters out invalid records with zero distance, amount or passengers."
+    columns:
+      - name: vendor_id
+        description: "Taxi vendor identifier"
+      - name: pickup_datetime
+        description: "Trip pickup timestamp"
+      - name: dropoff_datetime
+        description: "Trip dropoff timestamp"
+      - name: pickup_location_id
+        description: "Pickup location ID — joins to stg_zones"
+      - name: dropoff_location_id
+        description: "Dropoff location ID — joins to stg_zones"
+      - name: total_amount
+        description: "Total fare amount charged to passenger"
+
+  - name: stg_zones
+    description: "Staged NYC taxi zone lookup — 265 zones across NYC boroughs"
+    columns:
+      - name: location_id
+        description: "Primary key — unique zone identifier"
+      - name: borough
+        description: "NYC borough name"
+      - name: zone
+        description: "Zone name within borough"
