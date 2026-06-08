@@ -31,7 +31,8 @@ renamed as (
         tolls_amount,
         improvement_surcharge,
         total_amount,
-        congestion_surcharge
+        congestion_surcharge,
+        Airport_fee
 
     from source
     where trip_distance > 0
