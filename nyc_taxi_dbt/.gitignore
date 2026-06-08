@@ -6,4 +6,5 @@ logs/
 data/
 *.parquet
 *.duckdb
-dev.duckdb
+dev.duckdb*.duckdb
+*.duckdb.wal
