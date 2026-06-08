@@ -11,24 +11,53 @@ models:
     description: "Staged NYC Yellow Taxi trips for January 2025. Filters out invalid records with zero distance, amount or passengers."
     columns:
       - name: vendor_id
-        description: "Taxi vendor identifier"
+        description: "Taxi vendor identifier. 1=Creative Mobile Technologies, 2=Curb Mobility"
+        data_tests:
+          - not_null
+          - accepted_values:
+              values: [1, 2, 6, 7]
       - name: pickup_datetime
         description: "Trip pickup timestamp"
+        data_tests:
+          - not_null
       - name: dropoff_datetime
         description: "Trip dropoff timestamp"
+        data_tests:
+          - not_null
       - name: pickup_location_id
         description: "Pickup location ID — joins to stg_zones"
+        data_tests:
+          - not_null
       - name: dropoff_location_id
         description: "Dropoff location ID — joins to stg_zones"
+        data_tests:
+          - not_null
       - name: total_amount
         description: "Total fare amount charged to passenger"
+        data_tests:
+          - not_null
+      - name: payment_type
+        description: "Payment method. 0=Flex, 1=Credit card, 2=Cash, 3=No charge, 4=Dispute, 5=Unknown, 6=Voided"
+        data_tests:
+          - not_null
+      - name: rate_code_id
+        description: "Rate code. 1=Standard, 2=JFK, 3=Newark, 4=Nassau/Westchester, 5=Negotiated, 6=Group"
+        data_tests:
+          - not_null
+          - accepted_values:
+              values: [1, 2, 3, 4, 5, 6]
 
   - name: stg_zones
     description: "Staged NYC taxi zone lookup — 265 zones across NYC boroughs"
     columns:
       - name: location_id
         description: "Primary key — unique zone identifier"
+        data_tests:
+          - unique
+          - not_null
       - name: borough
         description: "NYC borough name"
-      - name: zone
-        description: "Zone name within borough"
+        data_tests:
+          - not_null
+          - accepted_values:
+              values: ['Manhattan', 'Brooklyn', 'Queens', 'Bronx', 'Staten Island', 'EWR', 'Unknown', 'N/A']

@@ -1,0 +1,42 @@
+version: 2
+
+models:
+  - name: dim_locations
+    description: "Dimension table for NYC taxi zones and boroughs"
+    columns:
+      - name: location_id
+        description: "Primary key — unique zone identifier"
+        data_tests:
+          - unique
+          - not_null
+      - name: borough
+        description: "NYC borough name"
+        data_tests:
+          - not_null
+      - name: zone
+        description: "Zone name within borough"
+        data_tests:
+          - not_null
+
+  - name: fct_trips
+    description: "Fact table for NYC Yellow Taxi trips January 2025. One row per trip."
+    columns:
+      - name: pickup_location_id
+        description: "Pickup zone ID — foreign key to dim_locations"
+        data_tests:
+          - not_null
+          - relationships:
+              to: ref('dim_locations')
+              field: location_id
+      - name: pickup_datetime
+        description: "Trip pickup timestamp"
+        data_tests:
+          - not_null
+      - name: total_amount
+        description: "Total fare charged to passenger"
+        data_tests:
+          - not_null
+      - name: payment_type
+        description: "Payment method code"
+        data_tests:
+          - not_null

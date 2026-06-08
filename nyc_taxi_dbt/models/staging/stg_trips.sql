@@ -36,8 +36,10 @@ renamed as (
 
     from source
     where trip_distance > 0
-      and total_amount > 0
-      and passenger_count > 0
+    and total_amount > 0
+    and passenger_count > 0
+    and rate_code_id != 99
+    and rate_code_id is not null
 
 )
 
