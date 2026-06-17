@@ -33,4 +33,4 @@ final as (
 
 )
 
-select * from final
+select *, {{ rate_code_description('rate_code_id') }} as rate_code_description from final
