@@ -1,0 +1,22 @@
+macros:
+  - name: rate_code_description
+    description: |
+      This macro takes a rate code ID and returns the corresponding description.
+    arguments:
+      - name: rate_code_id
+        description: The rate code ID to look up.
+        type: integer
+    return:
+      type: string
+      description: The description corresponding to the provided rate code ID.
+    sql: |
+      {% set rate_code_map = {
+          1: 'Standard Rate',
+          2: 'JFK',
+          3: 'Newark',
+          4: 'Nassau or Westchester',
+          5: 'Negotiated Fare',
+          6: 'Group Ride'
+      } %}
+      
+      {{ rate_code_map.get(rate_code_id, 'Unknown Rate Code') }}
