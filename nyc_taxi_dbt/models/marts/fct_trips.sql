@@ -14,6 +14,7 @@ final as (
 
     select
         
+        vendor_id,
         pickup_location_id,
         dropoff_location_id,
         fare_amount,
@@ -33,4 +34,8 @@ final as (
 
 )
 
-select *, {{ rate_code_description('rate_code_id') }} as rate_code_description from final
+select *, {{ rate_code_description('rate_code_id') }} as rate_code_description,
+{{ dbt_utils.generate_surrogate_key(['pickup_datetime', 'dropoff_datetime', 'pickup_location_id', 'dropoff_location_id', 'vendor_id', 'trip_distance', 'total_amount']) }} as trip_id,
+
+ from final
+

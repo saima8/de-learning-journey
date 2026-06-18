@@ -40,3 +40,8 @@ models:
         description: "Payment method code"
         data_tests:
           - not_null
+      - name: trip_id
+        description: "Surrogate key generated from pickup/dropoff timestamps and location IDs"
+        data_tests:
+          - unique
+          - not_null
