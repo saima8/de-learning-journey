@@ -1,6 +1,16 @@
+{{
+    config(
+        materialized='incremental',
+        unique_key='trip_id'
+    )
+}}
+
 with trips as (
 
     select * from {{ ref('stg_trips') }}
+    {% if is_incremental() %}
+    where pickup_datetime > (select max(pickup_datetime) from {{ this }}) 
+    {% endif %}
 
 ),
 
@@ -35,7 +45,8 @@ final as (
 )
 
 select *, {{ rate_code_description('rate_code_id') }} as rate_code_description,
-{{ dbt_utils.generate_surrogate_key(['pickup_datetime', 'dropoff_datetime', 'pickup_location_id', 'dropoff_location_id', 'vendor_id', 'trip_distance', 'total_amount']) }} as trip_id,
+{{ dbt_utils.generate_surrogate_key(['pickup_datetime', 'dropoff_datetime', 'pickup_location_id', 
+'dropoff_location_id', 'vendor_id', 'trip_distance', 'total_amount']) }} as trip_id,
 
  from final
 
