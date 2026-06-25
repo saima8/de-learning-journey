@@ -29,6 +29,7 @@ final as (
         dropoff_location_id,
         fare_amount,
         total_amount,
+        tip_amount,
         payment_type,
         pickup_datetime,
         dropoff_datetime,

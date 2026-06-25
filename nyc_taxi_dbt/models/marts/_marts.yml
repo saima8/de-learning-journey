@@ -45,3 +45,23 @@ models:
         data_tests:
           - unique
           - not_null
+
+  - name: tip_percentage_by_payment_type
+    description: >
+      Average tip percentage grouped by payment type. 
+      Note: cash (payment_type=2) tips are rarely recorded in the source 
+      system since drivers don't report cash gratuities, so the near-0% 
+      figure reflects a data capture limitation, not actual customer behaviour.
+      Only credit card (payment_type=1) tip percentages are considered reliable.
+    columns:
+      - name: payment_type
+        description: "Payment method code (1=Credit card, 2=Cash, 3=No charge, 4=Dispute)"
+        data_tests:
+          - not_null
+      - name: total_trips
+        description: "Count of trips for this payment type"
+        data_tests:
+          - not_null
+      - name: avg_tip_percentage_display
+        description: "Average tip as a percentage of fare amount, rounded to 2 decimal places"    
+      
