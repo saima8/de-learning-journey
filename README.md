@@ -13,19 +13,41 @@ DE skills through a project-based curriculum.
 ![dbt](https://img.shields.io/badge/dbt-1.11-orange)
 ![Snowflake](https://img.shields.io/badge/Snowflake-trial-lightblue)
 ![DuckDB](https://img.shields.io/badge/DuckDB-1.10-yellow)
+![AWS](https://img.shields.io/badge/AWS-Lambda%20%7C%20S3-orange)
 ![Git](https://img.shields.io/badge/Git-2.54-red)
 
 ## Progress
 | Week | Topic | Status |
 |------|-------|--------|
 | 1-2 | Git & GitHub | ✅ Complete |
-| 3-4 | dbt (data build tool) | 🔄 In progress |
-| 5-6 | First dbt project | 🔲 Upcoming |
-| 7 | Advanced dbt | 🔲 Upcoming |
-| 8-11 | AWS (S3, Lambda, Glue, Athena, Redshift) | 🔲 Upcoming |
+| 3-4 | dbt fundamentals + Jaffle Shop project | ✅ Complete |
+| 5-7 | NYC Taxi dbt project (staging, marts, advanced dbt) | ✅ Complete |
+| 8 | AWS foundations (account, IAM, billing, star schema) | ✅ Complete |
+| 9 | AWS — S3 + Lambda | 🔄 In progress |
+| 10 | AWS — Glue + Athena + Redshift | 🔲 Upcoming |
+| 11 | AWS — dashboard + full pipeline wrap | 🔲 Upcoming |
 | 12 | Portfolio complete | 🔲 Upcoming |
 
 ## Projects
+
+### nyc_taxi_dbt (Week 5-7)
+A dbt project on real NYC Yellow Taxi trip data (January 2025, 
+3.47M rows) using dbt Core and DuckDB. Star schema with 
+`fct_trips` and `dim_locations`, incremental materialisation 
+(~11x speed improvement), a custom macro, dbt-utils surrogate 
+keys, SCD Type 2 history tracking via snapshots, and 23 passing 
+data tests.
+
+**Tools:** dbt Core 1.11, DuckDB, Git  
+**Repo:** [`nyc_taxi_dbt`](./nyc_taxi_dbt)
+
+```bash
+cd nyc_taxi_dbt
+dbt seed
+dbt run
+dbt test
+dbt docs generate && dbt docs serve
+```
 
 ### jaffle_shop (Week 3-4)
 A dbt project built on the classic Jaffle Shop dataset 
@@ -42,6 +64,16 @@ dbt run
 dbt test
 dbt docs generate && dbt docs serve
 ```
+
+### AWS ETL Pipeline (Week 8-11) — in progress
+Building an end-to-end event-driven pipeline: S3 → Lambda → 
+Glue → Athena → Redshift → Power BI.
+
+- **Week 8:** AWS account secured (root MFA, IAM admin user, 
+  billing alarm). Core architecture concepts covered.
+- **Week 9:** _(in progress)_
+- **Week 10:** _(upcoming)_
+- **Week 11:** _(upcoming — architecture diagram + dashboard)_
 
 ## Certifications
 - dbt Fundamentals — dbt Labs (May 2026)
