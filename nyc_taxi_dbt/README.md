@@ -26,6 +26,40 @@ nyc_taxi_dbt/
 `taxi_zone_lookup (seed)` → `stg_zones` → `dim_locations` → `fct_trips`
 `yellow_tripdata_2025-01.parquet` → `stg_trips` → `fct_trips`
 
+**Data model:**
+
+```mermaid
+erDiagram
+  FCT_TRIPS }o--|| DIM_LOCATIONS : pickup_location
+  FCT_TRIPS }o--|| DIM_LOCATIONS : dropoff_location
+
+  FCT_TRIPS {
+    string trip_id PK
+    int vendor_id
+    int pickup_location_id FK
+    int dropoff_location_id FK
+    timestamp pickup_datetime
+    timestamp dropoff_datetime
+    float trip_distance
+    float fare_amount
+    float total_amount
+    float tip_amount
+    string payment_type
+    int rate_code_id
+    string rate_code_description
+    int passenger_count
+    string pickup_borough
+  }
+
+  DIM_LOCATIONS {
+    int location_id PK
+    string borough
+    string zone
+  }
+```
+
+`fct_trips` is the fact table — one row per trip, with `trip_id` as a surrogate key generated from pickup/dropoff timestamps, location IDs, vendor, distance, and total amount. `dim_locations` holds the 265 NYC taxi zones, referenced via `pickup_location_id` and `dropoff_location_id`. `pickup_borough` is denormalized directly onto the fact table at build time, avoiding a join to `dim_locations` for borough-level filtering.
+
 ## Models
 
 | Model | Type | Description |
