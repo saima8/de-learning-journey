@@ -71,8 +71,8 @@ Glue → Athena → Redshift → Power BI.
 
 - **Week 8:** AWS account secured (root MFA, IAM admin user, 
   billing alarm). Core architecture concepts covered.
-- **Week 9:** _(in progress)_
-- **Week 10:** _(upcoming)_
+- **Week 9:** _Complete_
+- **Week 10:** _(In progress)_
 - **Week 11:** _(upcoming — architecture diagram + dashboard)_
 
 ## Certifications
