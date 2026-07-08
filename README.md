@@ -23,9 +23,9 @@ DE skills through a project-based curriculum.
 | 3-4 | dbt fundamentals + Jaffle Shop project | ✅ Complete |
 | 5-7 | NYC Taxi dbt project (staging, marts, advanced dbt) | ✅ Complete |
 | 8 | AWS foundations (account, IAM, billing, star schema) | ✅ Complete |
-| 9 | AWS — S3 + Lambda | 🔄 In progress |
-| 10 | AWS — Glue + Athena + Redshift | 🔲 Upcoming |
-| 11 | AWS — dashboard + full pipeline wrap | 🔲 Upcoming |
+| 9 | AWS — S3 + Lambda | ✅ Complete |
+| 10 | AWS — Glue + Athena + Redshift | ✅ Complete |
+| 11 | AWS — dashboard + full pipeline wrap | 🔄 In progress |
 | 12 | Portfolio complete | 🔲 Upcoming |
 
 ## Projects
@@ -71,8 +71,14 @@ Glue → Athena → Redshift → Power BI.
 
 - **Week 8:** AWS account secured (root MFA, IAM admin user, 
   billing alarm). Core architecture concepts covered.
-- **Week 9:** _Complete_
-- **Week 10:** _(In progress)_
+- **Week 9:** S3 bucket pair created (raw/processed). Lambda function
+  `transform-taxi-trips` auto-triggers on file upload, filters zero-fare
+  trips, writes clean CSV to processed bucket. End-to-end tested.
+- **Week 10:** Glue Crawler created, schema inferred (20 columns) and 
+  registered in Data Catalog (`nyc_taxi_db`). Athena queries run directly 
+  against S3 — trip distance bands, top pickup zones, tip % by payment 
+  method. Results consistent with dbt pipeline output. Redshift covered 
+  conceptually (account plan limitation).
 - **Week 11:** _(upcoming — architecture diagram + dashboard)_
 
 ## Certifications
