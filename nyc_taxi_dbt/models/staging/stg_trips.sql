@@ -1,6 +1,6 @@
 with source as (
 
-    select * from read_parquet('C:/Users/skhan9/de-learning-journey/nyc_taxi_dbt/data/yellow_tripdata_2025-01.parquet')
+    select * from read_parquet('{{ env_var("TAXI_DATA_PATH", "data/yellow_tripdata_2025-01.parquet") }}')
 
 ),
 

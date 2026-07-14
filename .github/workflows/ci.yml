@@ -1,0 +1,36 @@
+name: dbt CI
+
+on:
+  push:
+    branches: [main]
+    paths: ['nyc_taxi_dbt/**']
+  pull_request:
+    branches: [main]
+    paths: ['nyc_taxi_dbt/**']
+
+jobs:
+  dbt-build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: nyc_taxi_dbt
+    env:
+      DBT_PROFILES_DIR: ci
+      TAXI_DATA_PATH: data/ci/sample.parquet
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dbt with DuckDB adapter
+        run: pip install dbt-duckdb
+
+      - name: Install dbt packages
+        run: dbt deps
+
+      - name: Build and test everything
+        run: dbt build
