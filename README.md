@@ -79,7 +79,10 @@ Glue → Athena → Redshift → Power BI.
   against S3 — trip distance bands, top pickup zones, tip % by payment 
   method. Results consistent with dbt pipeline output. Redshift covered 
   conceptually (account plan limitation).
-- **Week 11:** _(upcoming — architecture diagram + dashboard)_
+- **Week 11:** Glue ETL job built (CSV → Parquet, column renaming, type casting). 
+  Athena query on Parquet: 7.40KB scanned vs 153KB on CSV (20x reduction). 
+  Power BI connected via Athena ODBC — 4-visual dashboard live. 
+  Architecture diagram committed.
 
 ## Certifications
 - dbt Fundamentals — dbt Labs (May 2026)
