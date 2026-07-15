@@ -8,18 +8,33 @@ using dbt Core and DuckDB.
 
 
 ## Project Structure
+````
 nyc_taxi_dbt/
+├── ci/
+│   └── profiles.yml              # DuckDB profile for CI runs
+├── data/
+│   └── ci/
+│       └── sample.parquet        # 10k-row fixture for CI
+├── macros/
+│   ├── cents_to_dollars.sql      # Currency conversion macro
+│   └── rate_code_description.sql # Rate code decoding macro
 ├── models/
-│   ├── staging/          # Clean and rename raw source data
-│   │   ├── stg_trips.sql      # 3.47M NYC taxi trips
-│   │   └── stg_zones.sql      # 265 NYC taxi zones
-│   └── marts/            # Business-ready models
-│       ├── dim_locations.sql  # Location dimension table
-│       └── fct_trips.sql      # Trip fact table with borough join
+│   ├── staging/                  # Clean and rename raw source data
+│   │   ├── stg_trips.sql         # 3.47M NYC taxi trips
+│   │   └── stg_zones.sql         # 265 NYC taxi zones
+│   └── marts/                    # Business-ready models
+│       ├── dim_locations.sql     # Location dimension (SCD via snapshot)
+│       ├── fct_trips.sql         # Trip fact table with borough join
+│       └── tip_percentage_by_payment_type.sql  # Analysis model
 ├── seeds/
-│   └── taxi_zone_lookup.csv   # NYC taxi zone reference data
-└── notebooks/
-└── explore_data.ipynb     # Data exploration with DuckDB + pandas
+│   └── taxi_zone_lookup.csv      # NYC taxi zone reference data
+├── snapshots/
+│   └── dim_locations_snapshot.sql  # SCD Type 2 change tracking
+├── Notebooks/
+│   └── explore_data.ipynb        # Data exploration with DuckDB + pandas
+├── dbt_project.yml
+└── packages.yml
+````
 
 ## Architecture
 
