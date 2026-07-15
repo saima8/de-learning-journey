@@ -1,8 +1,11 @@
+![dbt CI](https://github.com/saima8/de-learning-journey/actions/workflows/ci.yml/badge.svg)
+
 # NYC Taxi dbt Project 🚕
 
 A dbt (data build tool) project built on NYC Yellow Taxi trip data 
 for January 2025. Demonstrates a complete ELT transformation pipeline 
 using dbt Core and DuckDB.
+
 
 ## Project Structure
 nyc_taxi_dbt/
