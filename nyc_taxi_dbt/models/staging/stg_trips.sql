@@ -40,6 +40,7 @@ renamed as (
     and passenger_count > 0
     and rate_code_id != 99
     and rate_code_id is not null
+    and tpep_dropoff_datetime > tpep_pickup_datetime
 
 )
 
